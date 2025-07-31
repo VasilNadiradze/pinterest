@@ -1,7 +1,11 @@
+import { useState } from "react";
 import Img from "../../components/image/Image";
 import "./profilepage.css";
+import Gallery from "../../components/gallery/Gallery";
+import Collections from "../../components/collections/Collections";
 
 const ProfilePage = () => {
+  const [type, setType] = useState("saved");
   return (
     <div className="profilePage">
       <Img src="/general/noAvatar.png" className="profileImg" w={100} h={100} />
@@ -17,9 +21,20 @@ const ProfilePage = () => {
         <Img src="/general/more.svg" />
       </div>
       <div className="profileOptions">
-        <span>Created</span>
-        <span>Saved</span>
+        <span
+          onClick={() => setType("created")}
+          className={type === "created" ? "active" : ""}
+        >
+          Created
+        </span>
+        <span
+          onClick={() => setType("saved")}
+          className={type === "saved" ? "active" : ""}
+        >
+          Saved
+        </span>
       </div>
+      {type === "created" ? <Gallery /> : <Collections />}
     </div>
   );
 };
