@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import pinRouter from "./routes/pin.route.js";
 import userRouter from "./routes/user.route.js";
 import commentRouter from "./routes/comment.route.js";
@@ -7,7 +8,10 @@ import connectDB from "./utils/connectDB.js";
 
 const app = express();
 
-app.use("/pin", pinRouter);
+app.use(express.json());
+app.use(cors({ origin: process.env.CLIENT_URL }));
+
+app.use("/pins", pinRouter);
 app.use("/users", userRouter);
 app.use("/board", boardRouter);
 app.use("/comment", commentRouter);

@@ -1,5 +1,5 @@
 export interface GalleryItemType {
-  id: number;
+  _id: number;
   media: string;
   width: number;
   height: number;
@@ -12,4 +12,17 @@ export interface ImgProps {
   w?: number;
   h?: number;
   onClick?: React.MouseEventHandler<HTMLImageElement>;
+}
+
+export interface FetchPinsParams {
+  pageParam: number;
+  search?: string;
+  userId?: string;
+  boardId?: string;
+}
+
+export interface GalleryProps {
+  search?: string;
+  userId?: string;
+  boardId?: string;
 }
